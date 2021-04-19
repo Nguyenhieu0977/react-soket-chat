@@ -1,4 +1,9 @@
+// frontend/src/components/signup/Signup.js file
+
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom"; // new import
+import { connect } from "react-redux"; // new import
+import PropTypes from "prop-types"; // new import
 import { Link } from "react-router-dom";
 import {
   Container,
@@ -8,6 +13,8 @@ import {
   Form,
   FormControl
 } from "react-bootstrap";
+
+import { signupNewUser } from "./SignupActions"; // new import
 
 class Signup extends Component {
   constructor(props) {
@@ -21,12 +28,13 @@ class Signup extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  // update function to call the action
   onSignupClick = () => {
     const userData = {
       username: this.state.username,
       password: this.state.password
     };
-    console.log("Sign up " + userData.username + " " + userData.password);
+    this.props.signupNewUser(userData); // <-- signup new user request
   };
 
   render() {
@@ -39,33 +47,38 @@ class Signup extends Component {
               <Form.Group controlId="usernameId">
                 <Form.Label>User name</Form.Label>
                 <Form.Control
+                  isInvalid={this.props.createUser.usernameError}
                   type="text"
                   name="username"
                   placeholder="Enter user name"
                   value={this.state.username}
                   onChange={this.onChange}
                 />
-                <FormControl.Feedback type="invalid"></FormControl.Feedback>
+                <FormControl.Feedback type="invalid">
+                  {this.props.createUser.usernameError}
+                </FormControl.Feedback>
               </Form.Group>
 
               <Form.Group controlId="passwordId">
                 <Form.Label>Your password</Form.Label>
                 <Form.Control
+                  isInvalid={this.props.createUser.passwordError}
                   type="password"
                   name="password"
                   placeholder="Enter password"
                   value={this.password}
                   onChange={this.onChange}
                 />
-                <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  {this.props.createUser.passwordError}
+                </Form.Control.Feedback>
               </Form.Group>
             </Form>
-            <Button 
-              color="primary"
-              onClick={this.onSignupClick}  
-            >Sign up</Button>
+            <Button color="primary" onClick={this.onSignupClick}>
+              Sign up
+            </Button>
             <p className="mt-2">
-              Đã có tài khoản! <Link to="/login">Login</Link>
+              Already have account? <Link to="/login">Login</Link>
             </p>
           </Col>
         </Row>
@@ -74,4 +87,20 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+// connect action and reducer
+// replace 
+// export default Signup;
+// with code below:
+
+Signup.propTypes = {
+  signupNewUser: PropTypes.func.isRequired,
+  createUser: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  createUser: state.createUser
+});
+
+export default connect(mapStateToProps, {
+  signupNewUser
+})(withRouter(Signup));
