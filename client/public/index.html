@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+
+  <!-- bootstrap & fontawesome -->
+  <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="%PUBLIC_URL%/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+  <!-- text fonts -->
+  <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/fonts.googleapis.com.css" />
+  <!-- ace styles -->
+  <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+  <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/ace-skins.min.css" />
+  <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/ace-rtl.min.css" />
+  <link rel="stylesheet" href="%PUBLIC_URL%/css/react-bootstrap-treeview.css" />
+  <script src="%PUBLIC_URL%/assets/js/ace-extra.min.js"></script>
+
+  <title>CNTTQK7</title>
+</head>
+
+<body class="skin-3 no-skin">
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+
+  <!-- <script src='https://localhost:8443/external_api.js'></script> -->
+  <script src='https://meet.jit.si/external_api.js'></script>
+
+
+  <script src="%PUBLIC_URL%/assets/js/jquery-2.1.4.min.js"></script>
+  <script src="%PUBLIC_URL%/assets/js/bootstrap.min.js"></script>
+  <!-- ace scripts -->
+  <script src="%PUBLIC_URL%/assets/js/ace-elements.min.js"></script>
+  <script src="%PUBLIC_URL%/assets/js/ace.min.js"></script>
+  <!-- Tables -->
+
+
+  <script type="text/javascript">
+    
+    jQuery(function ($) {
+
+      // scrollables
+      $('.scrollable').each(function () {
+        var $this = $(this);
+        $(this).ace_scroll({
+          size: $this.attr('data-size') || 100,
+          //styleClass: 'scroll-left scroll-margin scroll-thin scroll-dark scroll-light no-track scroll-visible'
+        });
+      });
+      $('.scrollable-horizontal').each(function () {
+        var $this = $(this);
+        $(this).ace_scroll(
+          {
+            horizontal: true,
+            styleClass: 'scroll-top',//show the scrollbars on top(default is bottom)
+            size: $this.attr('data-size') || 500,
+            mouseWheelLock: true
+          }
+        ).css({ 'padding-top': 12 });
+      });
+
+      $(window).on('resize.scroll_reset', function () {
+        $('.scrollable-horizontal').ace_scroll('reset');
+      });
+
+    });
+
+  </script>
+</body>
+
+</html>
