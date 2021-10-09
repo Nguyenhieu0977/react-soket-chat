@@ -40,7 +40,7 @@ const JitsiMeetClient = () => {
     // const profiles = useSelector(state => state.profiles.data);
     const profile = useSelector((state) => state.auth.profile);
     // const [fullname, setFullname] = useState(user_auth.username)
-    console.log(profile)
+    // conresole.log(profile)
     const fullname = profile.last_name
     const socketRef = useRef();
 
