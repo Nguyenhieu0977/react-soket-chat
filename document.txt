@@ -1,0 +1,202 @@
+ạo app React
+Với mục đích của project này, chúng ta sẽ sử dụng Facebook Create React App tiêu chuẩn làm cơ sở.
+
+Giả sử bạn có NodeJS phiên bản 10+ và có thể sử dụng tính năng npx mới, chúng ta sẽ tạo project React với câu lệnh sau:
+
+npx create-react-app reactdocker
+cd reactdocker
+Test ngay bằng câu lệnh
+
+npm start
+Mở trình duyệt và vào port 3000
+
+react
+Tạo Environment
+Bước tiếp theo là tạo environment docker. Đây chỉ là HTML, CSS và JavaScript, điều duy nhất chúng ta cần là một máy chủ http có thể phục vụ HTML thông thường. Đối với điều này, chúng ta cần NGINX. Bắt đầu làm quen với alpine, làm điều này trong thư mục repo:
+
+docker run -it -p 3000:3000 -p 80:80 -v $PWD:/var/www/localhost/htdocs --name reactdocker alpine /bin/sh
+Trong khi chúng ta có container, hãy loại bỏ các node modules  vì chúng đã được cài đặt và chúng ta cần chúng đêr cài đặt với Alpine.
+
+cd /var/www/localhost/htdocs
+# may take a few seconds
+rm -rf node_modules
+Chúng ta sẽ cần cài đặt NodeJS và NPM cho alpine:
+
+apk add nodejs
+apk add npm
+Cài đặt các dependencies trong thư mục:
+
+npm install
+Khởi động server:
+
+npm start # [Expected Output]# Compiled successfully!# You can now view reactdocker in the browser.# Local:            http://localhost:3000/
+# On Your Network:  http://172.17.0.2:3000/# Note that the development build is not optimized.
+# To create a production build, use npm run build.
+react
+Tiếp tục, chúng ta build nó
+
+npm run build
+Chúng ta có thể thấy các tập tin trong thư mục / build:
+
+cd build
+ls
+Những file cần một máy chủ http để hiển thị chúng trên cổng 80, vì điều này chúng ta sẽ thêm nginx vào app react:
+
+apk add nginx
+Tiếp theo, chúng ta cấu hình file cấu hình nginx để trỏ đến thư mục build:
+
+ apk add nano
+/etc/nginx/conf.d/default.conf
+Đây là tập tin gốc trước đây:
+
+default.conf
+# This is a default site configuration which will simply return 404, preventing
+# chance access to any other virtualhost.
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+# Everything is a 404
+        location / {
+                return 404;
+        }
+# You may need this to prevent return 404 recursion.
+        location = /404.html {
+                internal;
+        }
+}
+Đây là file được sửa đổi:
+
+default.conf
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;        location / {
+                root   /var/www/localhost/htdocs/build;                # this will make so all routes will lead to
+                # index.html so that react handles the routes
+                try_files $uri $uri/ /index.html;
+        }# You may need this to prevent return 404 recursion.
+        location = /404.html {
+                internal;
+        }
+}
+Tạo thư mục để cho phép nginx chạy trên process id :
+
+mkdir /run/nginx
+Test file cấu hình và khởi động server:
+
+nginx -t;# [Expected Output]
+# nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+# nginx: configuration file /etc/nginx/nginx.conf test is successfulnginx;
+Bây giờ nếu chúng ta đi đến port 80, có thể thấy thư mục build đã được hiển thị trên nginx
+
+react
+Chúng ta đã tạo thành công environment và chúng ta có thể tạo Dockerfile để đóng gói mọi thứ để deploy.
+
+Tạo Dockerfile
+Bây giờ chúng ta biết những dependencies chúng ta cần, và sẽ tạo một Dockerfile để tối ưu hóa nếu để deploy với các dependencies để thực hiện build.
+
+Trước khi chúng ta phá hủy container, hãy sao chép file cấu hình nginx mà chúng ta đã sửa đổi vào thư mục kho lưu trữ. Tiếp tục thực hiện câu lệnh sau
+
+# create a new config directory
+mkdir config
+# copy default.conf to config/default.conf
+docker cp reactdocker:/etc/nginx/conf.d/default.conf config/default.conf
+# now we can destroy the container
+docker rm -f reactdocker;
+Hãy bắt đầu với Dockerfile trong thư mục gốc của kho lưu trữ:
+
+FROM alpine
+EXPOSE 80
+ADD config/default.conf /etc/nginx/conf.d/default.conf
+COPY . /var/www/localhost/htdocs
+RUN apk add nginx && \
+    mkdir /run/nginx && \
+    apk add nodejs && \
+    apk add npm && \
+    cd /var/www/localhost/htdocs && \
+    rm -rf node_modules && \
+    npm install && \
+    npm run build;
+CMD ["/bin/sh", "-c", "exec nginx -g 'daemon off;';"]
+WORKDIR /var/www/localhost/htdocs
+Sau đó build
+
+docker build . -t reactdocker
+Chạy docker bằng câu lệnh sau
+
+docker run -it -d -p 80:80 --name rdocker reactdocker;
+
+Bây giờ container của chúng ta đã sẵn sàng để được push lên Docker Hub và sẵn sàng để được deploy.
+
+Tối ưu Image Docker
+Bạn có thể nhận thấy rằng COPY cần một chút thời gian để hoàn thành, vì vậy chúng ta sẽ thêm một file để ignore và xóa một số dependencies mà chúng ta không còn cần nữa.
+
+.dockerignore
+node_modules
+Next we’ll modify the Dockerfile to remove the dependencies we don’t need:
+
+Tiếp theo, chúng ta sẽ sửa đổi Dockerfile để loại bỏ các phụ thuộc mà không cần:
+
+FROM alpine
+EXPOSE 80
+ADD config/default.conf /etc/nginx/conf.d/default.conf
+COPY . /var/www/localhost/htdocs
+RUN apk add nginx && \
+    mkdir /run/nginx && \
+    apk add nodejs && \
+    apk add npm && \
+    cd /var/www/localhost/htdocs && \
+    npm install && \
+    npm run build && \
+    apk del nodejs && \
+    apk del npm && \
+    mv /var/www/localhost/htdocs/build /var/www/localhost && \
+    cd /var/www/localhost/htdocs && \
+    rm -rf * && \
+    mv /var/www/localhost/build /var/www/localhost/htdocs;
+CMD ["/bin/sh", "-c", "exec nginx -g 'daemon off;';"]
+WORKDIR /var/www/localhost/htdocs
+Kiểm tra kích thước của container trước khi chúng ta build lại:
+
+docker images | grep "reactdocker";# [Expected Output]
+# reactdocker   latest  3c160b1a5941  16 minutes ago  489MB
+Bây giờ chúng ta build lại
+
+docker images | grep "reactdocker"
+# [Expected Output]
+# reactdocker   latest  3c160b1a5941  16 minutes ago  489MB
+Đó là một sự khác biệt rất lớn từ 489 MB đến 36,6 MB.
+
+Chúng ta chạy lại docker
+
+docker run -it -d -p 80:80 --name rdocker reactdocker
+
+Now that we have our optimized Docker image, let’s push it to Docker Hub.
+
+Bây giờ chúng ta đã có image Docker được tối ưu hóa, hãy push nó lên Docker Hub.
+
+docker tag reactdocker {docker-hub-username}/reactdocker;
+docker push {docker-hub-username}/reactdocker;
+Tạo Docker Digital Ocean Droplet
+Sau khi tạo thành công container, giờ chúng ta vào Digital Ocean và deploy image
+
+
+Set một số cấu hình cho Droplet như sau:
+
+
+Đợi mọi thứ hoàn thành và sao chép địa chỉ IP:
+
+react
+Deploy Container
+Bây giờ chúng ta có địa chỉ IP, th SSH vào vùng chứa và thực hiện hành động chạy docker tương tự:
+
+# replace this droplet IP address with yours
+ssh root@142.93.153.135;
+Nó có thể nhắc bạn thêm key vào Droplet, và chọn yes
+
+Bây giờ bạn đang ở trong droplet, tạo docker container:
+
+docker run -it -d -p 80:80 --name rdocker {docker-hub-username}/reactdocker;
+Sau khi cài đặt và chạy, hãy chạy địa chỉ IP trong trình duyệt của bạn và bạn sẽ thấy app react hiện đang chạy trên Digital Ocean giọt nước.
+
+react
+Hiện tại, chúng ta đã đóng gói thành công một ứng dụng ReactJS trong Docker và deploy nó lên Digital Ocean.
