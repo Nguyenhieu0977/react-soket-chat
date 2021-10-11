@@ -1,8 +1,7 @@
 // frontend/src/components/dashboard/Dashboard.js
 
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class Footer extends Component {
 

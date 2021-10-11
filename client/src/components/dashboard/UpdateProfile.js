@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom"; // new import
-import { Col, Form, FormControl } from "react-bootstrap";
+import { Col, Form } from "react-bootstrap";
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import { updateProfile } from "../users/UserActions";
@@ -137,9 +137,6 @@ function UpdateProfile(props) {
               value={last_name}
               onChange={e => setLast_name(e.target.value)}
             />
-            {/* <Form.Control.Feedback type="invalid" >
-              <p style={{color:"red"}}>{errorInput}</p>
-            </Form.Control.Feedback> */}
           </Form.Group>
           <Form.Group controlId="usernameId">
             <Form.Label>Số điện thoại</Form.Label>
@@ -162,15 +159,10 @@ function UpdateProfile(props) {
                   onChange={handleChangeImage}
                 // accept="image/png, image/jpeg" 
                 />
-                {/* <Form.Control.Feedback type="invalid">
-                  {errorInput}
-                </Form.Control.Feedback> */}
               </Form.Group>
             </div>
             <div className="col-xs-12 col-sm-3">
               <div className={classes.root}>
-                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.small} />
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
                 <Avatar alt="Khac Hieu" src={imagePreviewUrl ? imagePreviewUrl : image} className={classes.large} />
               </div>
             </div>

@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
-import Webcam from 'react-webcam'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment';
-import CalendarModal from './CalendarModal';
 
 function CalendarListDetail(props) {
     const {className, handleEditCalendar, pageVisited, index, calendar, profiles } = props

@@ -34,19 +34,13 @@ function CalendarNext(props) {
                     <div className="thumbnail search-thumbnail">
                         <span className={classType}><b>{status}</b></span>
                         <img className="media-object" alt="100%x200" style={{ minHeight: "15vh", width: '100%', display: 'block' }} src="assets/images/myimg/HNTT.jpg" data-holder-rendered="true" />
-                        {/* <iframe src="https://meet.jit.si/Hieu" style={{ height: "200px", width: "100%", border: "0px" }}></iframe> */}
                         <div className="caption">
-                            {/* <div className="clearfix">
-                                <Link to={`/hnth/${cal.Id}`} >
-                                    <span className="pull-right label label-grey info-label">{cal.Subject}</span>
-                                </Link>
-                            </div> */}
+                          
                             <Link to={`/hnth/${cal.Id}`} >
                             <h5 className="search-title">
                                 {cal.Subject}
                             </h5>
                             </Link>
-                            {/* <p>{cal.Description}</p> */}
                             <span >Thời gian từ {moment(cal.StartTime).format("hh:mm A - DD/MM/YYYY").toString()}</span> &nbsp;
                             <span >đến {moment(cal.EndTime).format("hh:mm A - DD/MM/YYYY").toString()}</span>
                         </div>
@@ -56,11 +50,6 @@ function CalendarNext(props) {
             : <div className="col-xs-12 col-sm-12 col-md-12" key={index} style={{ height: "23vh" }}>
             <div className="thumbnail search-thumbnail">
                 <div className="caption">
-                    {/* <div className="clearfix">
-                        <Link to={`/hnth/${cal.Id}`} >
-                            <span className="pull-right label label-grey info-label">{cal.Subject}</span>
-                        </Link>
-                    </div> */}
                     <Link to={`/hnth/${cal.Id}`} >
                     <h5 >
                         Nội dung: {cal.Subject}

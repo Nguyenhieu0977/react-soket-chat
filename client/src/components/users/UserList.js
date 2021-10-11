@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'
 import { withRouter, useLocation   } from "react-router-dom";
 
-import { getUsers, getProfiles, getProfile, getUnits, deleteUser, getProfileUnit, deleteProfile } from '../users/UserActions';
+import { getUsers, getProfiles, getProfile, getUnits, deleteUser, deleteProfile } from '../users/UserActions';
 import UserListItem from './UserListItem'
 import UserPagination from './UserPagination';
 import UserAdd from './UserAdd';
 import ProfileUpdate from './ProfileUpdate';
-import UnitsList from './UnitsList';
 import Recursive from './Recursive';
 
 import Modal from '@material-ui/core/Modal';

@@ -1,24 +1,19 @@
 // frontend/src/components/dashboard/Dashboard.js
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
 import Menubar from "../common/Menubar";
-import ProgressComponent from '@material-ui/core/CircularProgress';
 import { getUsers, getProfile, getProfiles } from '../users/UserActions';
 import { getCalendar } from "../calendar/CalendarActions";
 import CalendarToday from './CalendarToday';
 import moment from 'moment'
-import CalendarNext from './CalendarNext';
-import CalendarHome from '../calendar/CalendarHome'
-import { Link } from 'react-router-dom';
 import UpdateProfile from './UpdateProfile'
 import Modal from '@material-ui/core/Modal';
 
 import Clock from 'react-clock';
 import 'react-clock/dist/Clock.css';
-import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -44,11 +39,7 @@ function Dashboard() {
   const profiles = useSelector(state => state.profiles.data);
   const data = useSelector((state) => state.calendars.calendars);
   const { user } = useSelector((state) => state.auth);
-  // console.log(user)
-  // console.log(profile)
   const [stateEdit, setStateEdit] = useState(false)
-
-  // console.log(stateEdit)
 
   data.sort((a, b) => {
     if (a.StartTime < b.StartTime) {
@@ -104,7 +95,7 @@ function Dashboard() {
     dispatch(getCalendar())
     dispatch(getUsers())
     dispatch(getProfiles())
-    
+
 
   }, [])
 
@@ -202,10 +193,6 @@ function Dashboard() {
         <Menubar />
         <div className="main-content">
           <div className="main-content-inner" >
-            {/* <CalendarBreadcrumb /> */}
-            {/* <div className="page-content"> */}
-            {/* {!stateEdit && <ProgressComponent style={{ marginLeft: '45%', marginTop: '25%', width: "100px", height: "100px" }} />} */}
-            {/* <div className="row" style={{ display: (stateEdit ? 'none' : 'block'), marginRight: '0px' }}> */}
             <div className="row" >
 
               <div className="row search-page" >
@@ -292,14 +279,11 @@ function Dashboard() {
 
                           </div>
                           <div className="col-xs-12 col-sm-6" style={{ display: 'flex', justifyContent: "center" }}>
-                            {/* <div style={{ display: 'flex', justifyContent: "center" }}> */}
                             <Clock
                               value={value}
                               size={130}
                             />
-                            {/* </div> */}
                           </div>
-                          {/* <div style={{ backgroundColor: "#EFF3F8", fontSize: "20px", textAlign: "center", height: "40px", marginTop: "6px" }}>Ngày {moment().format("DD-MM-YYYY")}</div> */}
                         </div>
                       </div>
                     </div>
@@ -316,7 +300,6 @@ function Dashboard() {
                           <div className="row"  >
                             <div className="col-xs-12 col-sm-4" >
                               <div className="text-center">
-                                {/* <Avatar alt="Khac Hieu" src={`http://localhost:8000${profile?.image}`} className={classes.large} /> */}
                                 {profile.image &&
                                   <img style={{ maxWidth: '125px' }} className="thumbnail inline no-margin-bottom" alt="Anh dai dien" src={`http://localhost:8000${(profile.image).replace("http://127.0.0.1:8000", "")}`} />
                                 }
@@ -395,7 +378,7 @@ function Dashboard() {
                     </div>
                     <div className="widget-body" style={{ flex: 1, maxHeight: '52vh', overflowY: 'auto' }}>
                       <div className="widget-main">
-                        <div className="col-xs-12 col-sm-12" style={{ paddingLeft: "0px", paddingRight: "0px", textAlign:"left"}}>
+                        <div className="col-xs-12 col-sm-12" style={{ paddingLeft: "0px", paddingRight: "0px", textAlign: "left" }}>
                           <div className="row"  >
                             <div className="col-xs-12 col-sm-12" style={{ paddingLeft: "0px", paddingRight: "0px" }}>
                               <div className="profile-user-info profile-user-info-striped " >
@@ -404,27 +387,27 @@ function Dashboard() {
                                   <div className="profile-info-value" style={{ color: "green" }}>
                                     <i className="ace-icon fa fa-th bigger-110"></i> &nbsp;
                                     Hệ thống hội nghị truyền hình ứng dụng được Ban Công nghệ thông tin Quân khu 7 phát triển dựa trên nền tảng mã nguồn mỡ.
-                                    </div>
-                                </div>
-                                <div className="profile-info-row" style={{ display: 'block' }}>
-                                  <div className="profile-info-value" >
-                                  <i className="ace-icon fa fa-cogs bigger-110"></i> &nbsp;
-                                    Có dầy đử các tính năng quản trị, lập lịch họp cho nhiều cuộc Hội nghị đồng thời.
-                                    Người điều hành hoặc quản trị có thể điều khiển cuộc họp thông qua giao diện điều khiển.                                  
-                                    </div>
-                                </div>
-                                <div className="profile-info-row" style={{ display: 'block' }}>
-                                  <div className="profile-info-value" >
-                                  <i className="ace-icon fa fa-phone bigger-110"></i> &nbsp;
-                                    Thông tin hỗ trợ: Trung tá Ths Nguyễn Khắc Hiếu - SĐT: 0982.252.254
                                   </div>
                                 </div>
-                                
+                                <div className="profile-info-row" style={{ display: 'block' }}>
+                                  <div className="profile-info-value" >
+                                    <i className="ace-icon fa fa-cogs bigger-110"></i> &nbsp;
+                                    Có dầy đử các tính năng quản trị, lập lịch họp cho nhiều cuộc Hội nghị đồng thời.
+                                    Người điều hành hoặc quản trị có thể điều khiển cuộc họp thông qua giao diện điều khiển.
+                                  </div>
+                                </div>
+                                <div className="profile-info-row" style={{ display: 'block' }}>
+                                  <div className="profile-info-value" >
+                                    <i className="ace-icon fa fa-phone bigger-110"></i> &nbsp;
+                                    Thông tin hỗ trợ: Email: hieunk_qk7@mail.bqp - SĐT: 0982.252.254
+                                  </div>
+                                </div>
+
                               </div>
                             </div>
                           </div>
                           <div className="hr hr-dotted hr-6"></div>
-                         
+
                         </div>
 
                       </div>
@@ -438,14 +421,12 @@ function Dashboard() {
 
         <Modal
           open={stateEdit}
-          // onClose={handleClose}
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
         >
           <UpdateProfile profile={profile} setStateEdit={setStateEdit} />
         </Modal>
 
-        {/* </div> */}
         <Footer />
       </div>
     </>

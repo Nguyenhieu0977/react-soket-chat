@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Iframe from 'react-iframe'
 import moment from 'moment';
 import CalendarJitsi from './CalendarJitsi';
 import ControlList from './ControlList';

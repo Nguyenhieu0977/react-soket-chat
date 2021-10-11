@@ -2,11 +2,8 @@
 
 import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
-
 import { signupReducer } from "./components/signup/SignupReducer";
 import { loginReducer } from "./components/login/LoginReducer";
-import { chatReducer } from "./components/chat/ChatReducer";
-import { chatUiReducer, chatGroupReducer } from "./components/chat_ui/ChatUiReducer";
 import { jitsiReducer } from "./components/jitsi/JisiReducer"
 import { CalendarReducer } from "./components/calendar/CalendarReducer";
 import { userReducer } from "./components/users/UserReducer"
@@ -19,9 +16,6 @@ const createRootReducer = history =>
     router: connectRouter(history),
     createUser: signupReducer,
     auth: loginReducer,
-    chats: chatReducer,
-    chatUi: chatUiReducer,
-    chatgroups: chatGroupReducer,
     jitsi: jitsiReducer,
     calendars: CalendarReducer,
     users: userReducer,

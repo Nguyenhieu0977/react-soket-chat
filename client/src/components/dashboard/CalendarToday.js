@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import CalendarJitsi from './CalendarJitsi';
 import { Link } from 'react-router-dom';
 
 function CalendarToday(props) {

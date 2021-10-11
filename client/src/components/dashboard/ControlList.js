@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setJitsiStore, setAudioAll, setAudio, setVideoAll, setFullAll } from "../jitsi/JitsiActions"
+import { setAudio } from "../jitsi/JitsiActions"
 
 import { useFullScreen } from "react-browser-hooks";
 
@@ -15,22 +15,12 @@ const ControlList = () => {
     const [stateChat, setStateChat] = useState(true)
     const [stateCameraMirror, setStateCameraMirror] = useState(true)
     const [stateTileView, setStateTileView] = useState(true)
-    const [stateFull, setStateFull] = useState(true)
     const [stateRaiseHand, setStateRaiseHand] = useState(true)
     const [stateFilmStrip, setStateFilmStrip] = useState(true)
 
     const [fullDesktop, setFullDesktop] = useState(false)
     const [numberOfParticipants, setNumberOfParticipants] = useState()
     const dispatch = useDispatch();
-
-    // useEffect(()=>{
-    //     // const numberOfParticipants = api.getNumberOfParticipants();
-    //     // setNumberOfParticipants(numberOfParticipants)
-    //     const infoMy = api.getParticipantsInfo()
-    //     console.log(infoMy)
-    //     console.log(infoMy[0].participantId)
-    // }, [api])
-
 
     const { toggle, fullScreen } = useFullScreen();
     const handleFullDesktop = () => {

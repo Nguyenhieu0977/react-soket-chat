@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { withRouter, Redirect, Link, useParams, useHistory } from "react-router-dom";
+import { withRouter, Link, useParams, useHistory } from "react-router-dom";
 import ProgressComponent from '@material-ui/core/CircularProgress';
 import { DateTimePickerComponent } from '@syncfusion/ej2-react-calendars';
 import Multiselect from 'multiselect-react-dropdown';
 import CalendarSeclectUserEdit from './CalendarSeclectUserEdit'
 import { getUsers, getProfiles } from '../users/UserActions'
-import { updateCalendar, detailCalendar, getCalendar } from './CalendarActions'
+import { updateCalendar, detailCalendar } from './CalendarActions'
 import Select from "react-select";
 import Header from "../common/Header"
 import Footer from "../common/Footer"

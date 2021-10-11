@@ -4,7 +4,7 @@ import { withRouter, useHistory } from "react-router-dom";
 import { useFullScreen } from "react-browser-hooks";
 import { setJitsiStore } from "../jitsi/JitsiActions"
 import ProgressComponent from '@material-ui/core/CircularProgress';
-import UserList from "../chat/UserList";
+import UserList from "../users/UserList";
 
 function CalendarJitsi(props){
     // const { roomId } = props.match.params;

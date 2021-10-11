@@ -1,5 +1,0 @@
-export const TOGGLE_AUDIO_ALL = "TOGGLE_AUDIO_ALL";
-export const TOGGLE_VIDEO_ALL = "TOGGLE_VIDEO_ALL";
-export const TOGGLE_FULL_ALL = "TOGGLE_FULL_ALL";
-export const SET_JITSI_STORE = "SET_JITSI_STORE";
-

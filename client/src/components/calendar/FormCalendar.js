@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { DateTimePickerComponent } from '@syncfusion/ej2-react-calendars';
-import { MultiSelectComponent, DropDownListComponent } from '@syncfusion/ej2-react-dropdowns';
 import Select from "react-select";
 import { addCalendar } from "./CalendarActions";
 
 function FromCalendar({ eventType2, ownerData }) {
     
-    const [selectedOption, setSelectedOption] = useState();
     const [Subject, setSubject] = useState();
     const [EventTypes, setEventTypes] = useState();
     const [StartTime, setStartTime] = useState();
@@ -15,7 +13,6 @@ function FromCalendar({ eventType2, ownerData }) {
     const [Location, setLocation] = useState();
     const [Description, setDescription] = useState();
     const [User_rooms, setUser_rooms] = useState([]);
-    // const [fields, setFields] = useState({ text: 'OwnerText', value: 'Id' });
 
     const dispatch = useDispatch();
 

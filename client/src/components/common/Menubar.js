@@ -1,15 +1,11 @@
 // frontend/src/components/dashboard/Dashboard.js
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { connect } from "react-redux";
 import { withRouter, NavLink } from "react-router-dom";
 import { logout } from "../login/LoginActions";
-// import { useFullScreen } from "react-browser-hooks";
-
 
 const Menubar = () => {
   const { user } = useSelector((state) => state.auth);
-  // const { toggle, fullScreen } = useFullScreen();
   const dispatch = useDispatch()
   const handleLogout = (event) => {
     event.preventDefault();
@@ -30,14 +26,6 @@ const Menubar = () => {
                 </NavLink>
                 <b className="arrow" />
               </li>
-              <li >
-                <NavLink to="/chat" activeStyle={{color:"white", backgroundColor:"grey"}}>
-                  <i className="menu-icon fa fa-comments-o bigger-160" />
-                  <span className="menu-text"> Chat</span>
-                </NavLink>
-                <b className="arrow" />
-              </li>
-              
               <>
               <li className="hover highlight" >
                 <NavLink to="/cal_meet" activeStyle={{color:"white", backgroundColor:"grey"}}>
@@ -55,7 +43,6 @@ const Menubar = () => {
                 <b className="arrow" />
               </li>
               </>
-              
               <li  onClick={handleLogout}>
               <NavLink to="" >
                   <i className="menu-icon fa fa-sign-out bigger-160" />
@@ -75,7 +62,5 @@ const Menubar = () => {
   </>
   );
 }
-
-
 
 export default withRouter(Menubar);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { withRouter, Redirect, Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import ProgressComponent from '@material-ui/core/CircularProgress';
 import { DateTimePickerComponent } from '@syncfusion/ej2-react-calendars';
 import Multiselect from 'multiselect-react-dropdown';
@@ -242,4 +242,4 @@ function CalendarAddRoom() {
     );
 }
 
-export default CalendarAddRoom;
+export default withRouter(CalendarAddRoom);

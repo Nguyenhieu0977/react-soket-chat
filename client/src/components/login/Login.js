@@ -7,7 +7,6 @@ import { login } from "./LoginActions.js";      // new import
 function Login() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  // const auth = useSelector(state => state.auth)
 
   const dispatch = useDispatch()
 

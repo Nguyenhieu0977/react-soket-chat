@@ -9,7 +9,7 @@ import ProgressComponent from '@material-ui/core/CircularProgress';
 import socketIOClient from "socket.io-client";
 import axios from "axios";
 // import { toastOnError } from "../../utils/Utils";
-import UserList from "../chat/UserList";
+import UserList from "../users/UserList";
 import ControlList from "./ControlList";
 import { logout } from "../login/LoginActions";
 import { getMeetRoom } from "./JitsiActions"

@@ -7,7 +7,7 @@ import { DateTimePickerComponent } from '@syncfusion/ej2-react-calendars';
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns';
 import { MultiSelectComponent } from '@syncfusion/ej2-react-dropdowns';
 import { isNullOrUndefined, L10n } from '@syncfusion/ej2-base';
-import "./material.css";
+// import "./material.css";
 import { addCalendar, getCalendar, updateCalendar, deleteCalendar } from "./CalendarActions";
 
 
