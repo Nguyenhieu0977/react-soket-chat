@@ -92,7 +92,7 @@ MIDDLEWARE = [
     
 ]
 
-ROOT_URLCONF = 'cntttqk7.urls'
+ROOT_URLCONF = 'server.urls'
 
 TEMPLATES = [
     {
@@ -110,7 +110,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'cntttqk7.wsgi.application'
+WSGI_APPLICATION = 'server.wsgi.application'
 
 
 # Database
