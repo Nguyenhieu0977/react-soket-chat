@@ -13,7 +13,7 @@ SECRET_KEY = 'p_5*i@2@ewt#t3l_tf%9qo4t$z*=n5ehe=ej1%63*y#)k&2gq('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0", "localhost", "cntt.qk7.bqp"]
 
 
 # Application definition
@@ -68,6 +68,13 @@ DJOSER = {
         'user_delete': 'djoser.serializers.UserDeleteSerializer',
     }
 }
+
+PROTOCOL = "http"
+DOMAIN = "localhost:3000"
+if not DEBUG:
+    PROTOCOL = "https"
+    DOMAIN = "cntt.qk7.bqp"
+
 
 # define which origins are allowed
 # CORS_ALLOWED_ORIGINS = [
