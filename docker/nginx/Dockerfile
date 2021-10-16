@@ -1,11 +1,11 @@
 # The first stage
 # Build React static files
-FROM node:13.12.0-alpine as build
+FROM node:14-alpine
 
 WORKDIR /app/frontend
 COPY ./frontend/package.json ./
 COPY ./frontend/package-lock.json ./
-# RUN npm ci --silent
+RUN npm ci --silent
 COPY ./frontend/ ./
 RUN npm run build
 
