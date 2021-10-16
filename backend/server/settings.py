@@ -13,7 +13,7 @@ SECRET_KEY = 'p_5*i@2@ewt#t3l_tf%9qo4t$z*=n5ehe=ej1%63*y#)k&2gq('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0", "localhost", "cntt.qk7.bqp"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -82,7 +82,7 @@ if not DEBUG:
 #     "http://127.0.0.1:3000"
 # ]
 
-CORS_ORIGIN_WHITELIST = ["http://localhost:3000", "http://127.0.0.1:3000"]
+CORS_ORIGIN_WHITELIST = ["https://localhost", "https://127.0.0.1", "https://192.168.13.229"]
 
 # DATETIME_FORMAT
 DATETIME_FORMAT = "%Y-%m-%d%H:%M:%S"
