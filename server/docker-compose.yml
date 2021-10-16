@@ -10,10 +10,4 @@ services:
       - .:/chatsocket
       - /chatsocket/node_modules
     ports:
-      - "2086:9000"
-    networks:
-      - postgres
-
-networks:
-  postgres:
-    driver: bridge
+      - "4000:4000"
