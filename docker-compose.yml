@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  server:
+    image: node:14
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./server:/root/server
+    env_file:
+      - ./deploy/server.env
+    entrypoint: sh /root/server/start_server.sh
+  backend:
+    build:
+      context: ./backend
+    # command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn server.wsgi:application --bind 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/root/backend
+  frontend:
+    build:
+      context: ./deploy
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./frontend/build:/var/www/html
+      - ./deploy/default.conf:/etc/nginx/sites-available/default
+    depends_on:
+      - server
+      - backend
