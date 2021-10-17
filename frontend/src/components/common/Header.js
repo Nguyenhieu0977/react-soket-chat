@@ -51,7 +51,7 @@ const Header = (props) => {
                   <a data-toggle="dropdown" href="#" className="dropdown-toggle">
                     {/* className="user-info"  */}
                     {profile?.image &&
-                      <img className="nav-user-photo" src={`http://localhost:8000${(profile.image).replace("http://127.0.0.1:8000", "")}`} alt="Jason's Photo" />
+                      <img className="nav-user-photo" src={`http://cntt.qk7.bqp:8000${(profile.image).replace("http://cntt.qk7.bqp:8000", "")}`} alt="CNTT Photo" />
                     }
                     <span ><small>Xin chào,&nbsp;</small>{profile?.first_name ? profile.first_name : user.username}</span>
                     <i className="ace-icon fa fa-caret-down" />

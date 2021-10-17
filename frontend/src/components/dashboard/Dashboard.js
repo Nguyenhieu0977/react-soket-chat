@@ -301,7 +301,7 @@ function Dashboard() {
                             <div className="col-xs-12 col-sm-4" >
                               <div className="text-center">
                                 {profile.image &&
-                                  <img style={{ maxWidth: '125px' }} className="thumbnail inline no-margin-bottom" alt="Anh dai dien" src={`http://localhost:8000${(profile.image).replace("http://127.0.0.1:8000", "")}`} />
+                                  <img style={{ maxWidth: '125px' }} className="thumbnail inline no-margin-bottom" alt="Anh dai dien" src={`http://cntt.qk7.bqp:8000${(profile.image).replace("http://cntt.qk7.bqp:8000", "")}`} />
                                 }
                               </div>
                             </div>

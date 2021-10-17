@@ -14,7 +14,7 @@ import CalendarEditRoom from './components/calendar/CalendarEditRoom';
 import CalendarMeet from './components/calendar/CalendarMeet';
 import UserCreate from './components/users/UserCreate';
 
-axios.defaults.baseURL = "http://127.0.0.1:8000";
+axios.defaults.baseURL = "http://cntt.qk7.bqo:8000";
 // if (window.location.origin === "http://localhost:8000") {
 //   axios.defaults.baseURL = "http://127.0.0.1:8000";
 // } else {

@@ -126,8 +126,8 @@ const JitsiMeetClient = () => {
                     SHOW_JITSI_WATERMARK: false,
                     SHOW_WATERMARK_FOR_GUESTS: false,
                     DISABLE_DOMINANT_SPEAKER_INDICATOR: true,
-                    TILE_VIEW_MAX_COLUMNS: 4,
-                    TOOLBAR_BUTTONS: ['microphone', 'camera', 'chat', 'hangup', 'desktop', 'tileview', 'fullscreen'],
+                    // TILE_VIEW_MAX_COLUMNS: 4,
+                    // TOOLBAR_BUTTONS: ['microphone', 'camera', 'chat', 'hangup', 'desktop', 'tileview', 'fullscreen'],
                 },
                 parentNode: document.querySelector('#jitsi-iframe'),
                 userInfo: { displayName: fullname }
