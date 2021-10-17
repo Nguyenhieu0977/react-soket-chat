@@ -6,6 +6,9 @@ const socketIo = require("socket.io");
 // const { addMessage, getMessagesInRoom } = require("./messages");
 
 const app = express();
+app.get('/', function (req, res) {
+  res.send('Server Soket running!');
+});
 app.use(cors());
 
 const server = http.createServer(app);
@@ -16,6 +19,8 @@ const io = socketIo(server, {
     credentials: true,
   },
 });
+
+
 
 const PORT = 4000;
 const USER_JOIN_CHAT_EVENT = "USER_JOIN_CHAT_EVENT";
