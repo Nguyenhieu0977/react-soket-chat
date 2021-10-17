@@ -69,11 +69,11 @@ DJOSER = {
     }
 }
 
-PROTOCOL = "http"
-DOMAIN = "localhost:3000"
-if not DEBUG:
-    PROTOCOL = "https"
-    DOMAIN = "cntt.qk7.bqp"
+# PROTOCOL = "http"
+# DOMAIN = "localhost:3000"
+# if not DEBUG:
+#     PROTOCOL = "https"
+#     DOMAIN = "cntt.qk7.bqp"
 
 
 # define which origins are allowed
@@ -82,7 +82,7 @@ if not DEBUG:
 #     "http://127.0.0.1:3000"
 # ]
 
-CORS_ORIGIN_WHITELIST = ["https://localhost", "https://127.0.0.1", "https://192.168.4.109"]
+CORS_ORIGIN_WHITELIST = ["https://localhost:8443", "https://127.0.0.1:8443", "https://172.20.0.116:8443", "https://cntt.qk7.bqp:8443", "https://192.168.4.109:8443"]
 
 # DATETIME_FORMAT
 DATETIME_FORMAT = "%Y-%m-%d%H:%M:%S"
