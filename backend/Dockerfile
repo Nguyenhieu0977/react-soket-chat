@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1
-FROM python:3.8.0
+FROM python:3
 ENV PYTHONUNBUFFERED=1
-WORKDIR /backend
-COPY requirements.txt /backend/
+WORKDIR /code
+COPY requirements.txt /code/
 RUN pip install gunicorn
 RUN pip install -r requirements.txt
-COPY . /backend/
+COPY . /code/
