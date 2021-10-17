@@ -2,16 +2,12 @@ version: '3.8'
 services:
   server:
     build:
-      context: ./
-      target: dev
+      context: ./server
     volumes:
       - .:/server
-    command: npm run start:dev
+    command: npm start
     ports:
       - "4000:4000"
-    environment:
-      NODE_ENV: development
-      DEBUG: nodejs-docker-express:*
   backend:
     build:
       context: ./backend
@@ -19,8 +15,6 @@ services:
     command: gunicorn server.wsgi:application --bind 0.0.0.0:8000
     ports:
       - "8000:8000"
-    volumes:
-      - .:/backend
   frontend:
     build:
       context: ./deploy
