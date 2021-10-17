@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   server:
-    image: node:14
+    image: node:14-alpine
     ports:
       - '4000:4000'
     volumes:
@@ -17,7 +17,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./backend:/root/backend
+      - .:/backend
   frontend:
     build:
       context: ./deploy
