@@ -82,7 +82,7 @@ if not DEBUG:
 #     "http://127.0.0.1:3000"
 # ]
 
-CORS_ORIGIN_WHITELIST = ["http://localhost:3000", "http://127.0.0.1:3000", "http://192.168.7.129:3000"]
+CORS_ORIGIN_WHITELIST = ["http://localhost", "http://127.0.0.1", "http://192.168.4.109"]
 
 # DATETIME_FORMAT
 DATETIME_FORMAT = "%Y-%m-%d%H:%M:%S"
